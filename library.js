@@ -47,5 +47,8 @@ function render(item, index){
     console.log(item.title)
 }
 console.table(library)
+function renderLibrary(){
+    library.forEach((book, index) => render(book, index));
+}
 
-library.forEach((book, index) => render(book, index));
+renderLibrary();
