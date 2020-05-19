@@ -28,8 +28,8 @@ function render(item, index){
     
     bookTitle.textContent = item.title
     bookAuthor.textContent = item.author
-    bookPages.textContent = item.pages
-    bookRead.textContent = item.read
+    bookPages.textContent = `${item.pages} pages`
+    bookRead.textContent = ((item.read)? "read" : "not read")
     
 
     bookContainer.classList.add("bookContainer")
