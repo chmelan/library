@@ -19,7 +19,7 @@ function addBookToLibrary(title, author, pages, read) {
     return library.push(newBook)
 }
 
-function render(item){
+function render(item, index){
     const bookContainer = document.createElement('div');
 	const bookTitle = document.createElement('div');
 	const bookAuthor = document.createElement('div');
@@ -33,7 +33,7 @@ function render(item){
     
 
     bookContainer.classList.add("bookContainer")
-
+    bookContainer.dataset.libraryIndex = index
     bookContainer.appendChild(bookTitle)
     bookContainer.appendChild(bookAuthor)
     bookContainer.appendChild(bookPages)
@@ -44,4 +44,4 @@ function render(item){
 }
 console.table(library)
 
-library.forEach(book => render(book));
+library.forEach((book, index) => render(book, index));
