@@ -33,7 +33,11 @@ function render(item, index){
     
 
     bookContainer.classList.add("bookContainer")
+    bookRead.classList.add((item.read) ? "bookRead" : "bookNotRead")
+
     bookContainer.dataset.libraryIndex = index
+
+
     bookContainer.appendChild(bookTitle)
     bookContainer.appendChild(bookAuthor)
     bookContainer.appendChild(bookPages)
