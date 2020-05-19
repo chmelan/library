@@ -1,4 +1,4 @@
-const bookTable = document.querySelector(".bookTable")
+const bookShelf = document.querySelector(".bookShelf")
 
 let library = [
     new Book("The Hobbit", "J. R. R. Tolkien", 310, false),
@@ -19,27 +19,29 @@ function addBookToLibrary(title, author, pages, read) {
     return library.push(newBook)
 }
 
-function render(book){
-    const row = document.createElement('tr');
-	const bookTitle = document.createElement('th');
-	const bookAuthor = document.createElement('th');
-	const bookPages = document.createElement('th');
-    const bookRead = document.createElement('th');
+function render(item){
+    const bookContainer = document.createElement('div');
+	const bookTitle = document.createElement('div');
+	const bookAuthor = document.createElement('div');
+	const bookPages = document.createElement('div');
+    const bookRead = document.createElement('div');
+    
+    bookTitle.textContent = item.title
+    bookAuthor.textContent = item.author
+    bookPages.textContent = item.pages
+    bookRead.textContent = item.read
     
 
-    bookTitle.textContent = book.title
-    bookAuthor.textContent = book.author
-    bookPages.textContent = book.pages
-    bookRead.textContent = book.read
-    
-    bookTable.appendChild(row)
-    row.appendChildren(
-		bookTitle,
-		bookAuthor,
-		bookPages,
-		bookRead
-    )
-    
+    bookContainer.classList.add("bookContainer")
+
+    bookContainer.appendChild(bookTitle)
+    bookContainer.appendChild(bookAuthor)
+    bookContainer.appendChild(bookPages)
+    bookContainer.appendChild(bookRead)
+
+    bookShelf.appendChild(bookContainer)
+    console.log(item.title)
 }
 console.table(library)
-library.forEach(render(Book));
+
+library.forEach(book => render(book));
