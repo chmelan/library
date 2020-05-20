@@ -1,4 +1,13 @@
 const bookShelf = document.querySelector(".bookShelf")
+const formContainer = document.querySelector(".formContainer")
+// query selectors for the form data
+const bookTitleInput = document.querySelector("#bookTitleInput")
+const bookAuthorInput = document.querySelector("#bookAuthorInput")
+const bookPagesInput = document.querySelector("#bookPagesInput")
+const bookReadInput = document.querySelector("#bookReadInput")
+const newBookSubmitButton = document.querySelector("#newBookSubmitButton")
+
+newBookSubmitButton.addEventListener("click", newBookFromForm);
 
 let library = [
     new Book("The Hobbit", "J. R. R. Tolkien", 310, false),
@@ -18,6 +27,16 @@ function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
     return library.push(newBook)
 }
+
+function newBookFromForm(){
+let newBookTitle = bookTitleInput.value
+let newBookAuthor = bookAuthorInput.value
+let newBookPages = bookPagesInput.value
+let newBookRead = (bookReadInput.checked) ? true: false
+addBookToLibrary(newBookTitle, newBookAuthor, newBookPages, newBookRead)
+render(library[library.length -1], (library.length - 1))
+}
+
 
 function render(item, index){
     const bookContainer = document.createElement('div');
@@ -46,7 +65,7 @@ function render(item, index){
     bookShelf.appendChild(bookContainer)
     console.log(item.title)
 }
-console.table(library)
+
 function renderLibrary(){
     library.forEach((book, index) => render(book, index));
 }
