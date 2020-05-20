@@ -11,7 +11,7 @@ let library = [
     new Book("A Wizard of Earthsea", "Ursula K. Le Guin", 267, true),
     new Book("The Blade Itself", "Joe Abercrombie", 596, true)
 ];
-
+//book object constructor
 function Book(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -19,21 +19,19 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-
+//Adds new book object into the library array
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
     return library.push(newBook)
 }
-
+//creates a new book object in the library from user input 
 function newBookFromForm(){
-const bookTitleInput = document.querySelector("#bookTitleInput")
-const bookAuthorInput = document.querySelector("#bookAuthorInput")
-const bookPagesInput = document.querySelector("#bookPagesInput")
-const bookReadInput = document.querySelector("#bookReadInput")
-let newBookTitle = bookTitleInput.value 
-let newBookAuthor = bookAuthorInput.value
-let newBookPages = bookPagesInput.value
-let newBookRead = (bookReadInput.checked) ? true: false
+//query selectors for the elements   
+const newBookTitle = document.querySelector("#bookTitleInput").value
+const newBookAuthor = document.querySelector("#bookAuthorInput").value
+const newBookPages = document.querySelector("#bookPagesInput").value
+const newBookRead  = (document.querySelector("#bookReadInput").checked)? true: false
+
 if (newBookTitle === "" || newBookAuthor === "" || newBookPages === ""){//cleanses inputs
     return alert("Please fill out all forms!")
 }
