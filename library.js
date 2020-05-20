@@ -33,6 +33,10 @@ let newBookTitle = bookTitleInput.value
 let newBookAuthor = bookAuthorInput.value
 let newBookPages = bookPagesInput.value
 let newBookRead = (bookReadInput.checked) ? true: false
+if (newBookTitle === "" || newBookAuthor === "" || newBookPages === ""){
+    return alert("Please fill out all forms!")
+}
+
 addBookToLibrary(newBookTitle, newBookAuthor, newBookPages, newBookRead)
 render(library[library.length -1], (library.length - 1))
 }
