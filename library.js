@@ -1,13 +1,10 @@
 const bookShelf = document.querySelector(".bookShelf")
-const formContainer = document.querySelector(".formContainer")
-// query selectors for the form data
-const bookTitleInput = document.querySelector("#bookTitleInput")
-const bookAuthorInput = document.querySelector("#bookAuthorInput")
-const bookPagesInput = document.querySelector("#bookPagesInput")
-const bookReadInput = document.querySelector("#bookReadInput")
-const newBookSubmitButton = document.querySelector("#newBookSubmitButton")
+const formContainer = document.querySelector("#formContainer")
+const addNewBookFormButton = document.querySelector("#addNewBookFormButton")
 
-newBookSubmitButton.addEventListener("click", newBookFromForm);
+// query selectors for the form data
+
+addNewBookFormButton.addEventListener("click", renderNewBookForm);
 
 let library = [
     new Book("The Hobbit", "J. R. R. Tolkien", 310, false),
@@ -29,16 +26,36 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function newBookFromForm(){
-let newBookTitle = bookTitleInput.value
+const bookTitleInput = document.querySelector("#bookTitleInput")
+const bookAuthorInput = document.querySelector("#bookAuthorInput")
+const bookPagesInput = document.querySelector("#bookPagesInput")
+const bookReadInput = document.querySelector("#bookReadInput")
+let newBookTitle = bookTitleInput.value 
 let newBookAuthor = bookAuthorInput.value
 let newBookPages = bookPagesInput.value
 let newBookRead = (bookReadInput.checked) ? true: false
-if (newBookTitle === "" || newBookAuthor === "" || newBookPages === ""){
+if (newBookTitle === "" || newBookAuthor === "" || newBookPages === ""){//cleanses inputs
     return alert("Please fill out all forms!")
 }
-
 addBookToLibrary(newBookTitle, newBookAuthor, newBookPages, newBookRead)
 render(library[library.length -1], (library.length - 1))
+formContainer.innerHTML = `<button id="addNewBookFormButton">Add New Book!</button>`
+const addNewBookFormButton = document.querySelector("#addNewBookFormButton")
+addNewBookFormButton.addEventListener("click", renderNewBookForm);
+}
+
+function renderNewBookForm(){
+formContainer.innerHTML= `<label for="bookTitleInput">Book Title:</label>
+<input type= "text" id="bookTitleInput" name="bookTitleInput">
+<label for="bookAuthorInput">Book Author:</label>
+<input type= "text" id="bookAuthorInput" name="bookAuthorInput">
+<label for="bookPagesInput">Number of Pages:</label>
+<input type= "text" id="bookPagesInput" name="bookPagesInput">
+<label for="bookReadInput">Read</label>
+<input type="checkbox" id="bookReadInput" name="bookReadInput" value="read">
+<button id="newBookSubmitButton">Submit</button>`
+const newBookSubmitButton = document.querySelector("#newBookSubmitButton")
+newBookSubmitButton.addEventListener("click", newBookFromForm);
 }
 
 
@@ -73,5 +90,12 @@ function render(item, index){
 function renderLibrary(){
     library.forEach((book, index) => render(book, index));
 }
+
+function removeAllChildren(parentNode){
+    while (parentNode.firstChild) {
+        parentNode.removeChild(parentNode.lastChild);
+    }
+}
+
 
 renderLibrary();
