@@ -51,7 +51,7 @@ formContainer.innerHTML= `<div class="appendedFormContainer"><label for="bookTit
 <label for="bookAuthorInput">Book Author:</label>
 <input type= "text" id="bookAuthorInput" name="bookAuthorInput">
 <label for="bookPagesInput">Number of Pages:</label>
-<input type= "number" id="bookPagesInput" name="bookPagesInput">
+<input type= "number" id="bookPagesInput" name="bookPagesInput" min="1">
 <label for="bookReadInput">Read</label>
 <input type="checkbox" id="bookReadInput" name="bookReadInput" value="read">
 <button id="newBookSubmitButton">Submit</button></div>`
