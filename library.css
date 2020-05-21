@@ -1,14 +1,53 @@
+body{
+    background-color: #fff1d0;
+    color: #086788;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+h1{
+    text-align: center;
+    background-color:#086788;
+    color: #fff1d0;
+    font-size: 50px;
+}
+.bookShelf{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
 .bookContainer{
     border: 2px solid black;
+    background-color: #f0c808;
     margin: 5px;
     box-shadow: 10px 5px 4px #888888;
+    color: black;
+
 }
 .bookRead{
-    background-color: green;
+    background-color: #06aed5;
 }
 .bookNotRead{
-    background-color: red;
+    background-color: #dd1c1a;
 }
 input{
     border : 1px solid black;
+}
+#formContainer{
+    display: flex;
+    justify-content: center;
+}
+#addNewBookFormButton{
+    background-color:#086788;
+    color: white;
+    text-align: center;
+}
+.appendedFormContainer{
+    border : 1px solid #086788;
+    height: 50px;
+}
+#newBookSubmitButton{
+    background-color: #086788;
+    color: #fff1d0;
+    width: 100%;
+    text-align: center;
 }
