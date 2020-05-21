@@ -23,6 +23,14 @@ h1{
     color: black;
 
 }
+.deleteBookButton{
+    background-color:white;
+    color: black;
+}
+.deleteBookButton:hover{
+    background-color: black;
+    color: white;
+}
 .bookRead{
     background-color: #06aed5;
 }
@@ -41,6 +49,9 @@ input{
     color: white;
     text-align: center;
 }
+#addNewBookFormButton:hover{
+    background-color:#06aed5;
+}
 .appendedFormContainer{
     border : 1px solid #086788;
     height: 50px;
@@ -50,4 +61,7 @@ input{
     color: #fff1d0;
     width: 100%;
     text-align: center;
+}
+#newBookSubmitButton:hover{
+    background-color: #06aed5;
 }

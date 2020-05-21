@@ -71,7 +71,7 @@ function render(item, index){//renders a book object in html
     bookAuthor.textContent = item.author
     bookPages.textContent = `${item.pages} pages`
     bookRead.textContent = ((item.read)? "read" : "not read")
-    deleteBookButton.textContent = "Delete"
+    deleteBookButton.textContent = "X"
 
     bookContainer.classList.add("bookContainer")
     bookRead.classList.add((item.read) ? "bookRead" : "bookNotRead")
