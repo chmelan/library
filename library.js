@@ -18,7 +18,9 @@ function Book(title, author, pages, read) {
     this.pages = pages
     this.read = read
 }
-
+Book.prototype.toggleRead = function(){
+    (this.read)? (this.read = false) : (this.read = true)
+}
 //Adds new book object into the library array
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
@@ -49,7 +51,7 @@ formContainer.innerHTML= `<div class="appendedFormContainer"><label for="bookTit
 <label for="bookAuthorInput">Book Author:</label>
 <input type= "text" id="bookAuthorInput" name="bookAuthorInput">
 <label for="bookPagesInput">Number of Pages:</label>
-<input type= "text" id="bookPagesInput" name="bookPagesInput">
+<input type= "number" id="bookPagesInput" name="bookPagesInput">
 <label for="bookReadInput">Read</label>
 <input type="checkbox" id="bookReadInput" name="bookReadInput" value="read">
 <button id="newBookSubmitButton">Submit</button></div>`
@@ -77,8 +79,11 @@ function render(item, index){//renders a book object in html
     bookRead.classList.add((item.read) ? "bookRead" : "bookNotRead")
     deleteBookButton.classList.add("deleteBookButton")
 
+    bookRead.addEventListener("click", toggleReadButton)
+
     deleteBookButton.addEventListener("click", deleteBook)
     deleteBookButton.dataset.libraryIndex = (index)
+    bookRead.dataset.libraryIndex = (index)
 
 
     bookContainer.appendChild(bookTitle)
@@ -88,7 +93,14 @@ function render(item, index){//renders a book object in html
     bookContainer.appendChild(deleteBookButton)
 
     bookShelf.appendChild(bookContainer)
-    console.log(item.title)
+    console.table(library)
+}
+
+function toggleReadButton(){
+bookIndex = this.dataset.libraryIndex;
+library[bookIndex].toggleRead();
+(library[bookIndex].read)? this.className = "bookRead" : this.className = "bookNotRead";
+(library[bookIndex].read)? this.textContent = "read" : this.textContent = "not read";
 }
 
 function deleteBook(){
