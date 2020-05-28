@@ -6,21 +6,27 @@ const addNewBookFormButton = document.querySelector("#addNewBookFormButton")
 
 addNewBookFormButton.addEventListener("click", renderNewBookForm);
 
+class Book{ 
+    constructor(title, author, pages, read){
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
+    toggleRead(){
+        (this.read)? (this.read = false) : (this.read = true)
+    }
+
+}
+
 let library = [
     new Book("The Hobbit", "J. R. R. Tolkien", 310, false),
     new Book("A Wizard of Earthsea", "Ursula K. Le Guin", 267, true),
     new Book("The Blade Itself", "Joe Abercrombie", 596, true)
 ];
 //book object constructor
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-}
-Book.prototype.toggleRead = function(){
-    (this.read)? (this.read = false) : (this.read = true)
-}
+
+
 //Adds new book object into the library array
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
@@ -93,7 +99,6 @@ function render(item, index){//renders a book object in html
     bookContainer.appendChild(deleteBookButton)
 
     bookShelf.appendChild(bookContainer)
-    console.table(library)
 }
 
 function toggleReadButton(){
@@ -118,6 +123,29 @@ function removeAllChildren(parentNode){
         parentNode.removeChild(parentNode.lastChild);
     }
 }
-
+function storageAvailable(type) {
+    var storage;
+    try {
+        storage = window[type];
+        var x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
 
 renderLibrary();
